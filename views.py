@@ -1,3 +1,19 @@
+from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic.edit import FormMixin
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView
+from django.contrib.auth import logout, login
+from django.urls import reverse_lazy, reverse
+from django.contrib import messages
+from django.core.paginator import Paginator
+from django.http import JsonResponse
+
+
+from .models import Category, Product, Comment
+from .forms import UserCommentForm
+
 def simple_ajax(request):
     form = UserCommentForm
     return render(request, 'store/simple_ajax.html', {"UserCommentForm": form})
